@@ -35,3 +35,15 @@ weather = (
 	('Las Vegas', 2013, 'July', 'December', 80),
 	('Atlanta', 2013, 'July', 'January', 70)
 )
+
+# Connect to the database. The "connect()" method returns a connection object.
+con = lite.connect('getting_started.db')
+
+with con:
+	cur = con.cursor()
+
+# Create the tables.
+
+# Insert rows of data by passing tuples through the "execute()" method.
+	cur.executemany("INSERT INTO cities VALUES(?,?)", cities)
+	cur.executemany("INSERT INTO weather VALUES(?,?,?,?,?)", weather)
