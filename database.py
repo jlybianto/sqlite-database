@@ -42,6 +42,10 @@ con = lite.connect('getting_started.db')
 with con:
 	cur = con.cursor()
 
+# Drop currently existing tables.
+	cur.execute("DROP TABLE IF EXISTS cities")
+	cur.execute("DROP TABLE IF EXISTS weather")
+	
 # Create the tables.
 	cur.execute("CREATE TABLE cities (name text, state text)")
 	cur.execute("CREATE TABLE weather (city text, year integer, warm_month text, cold_month text, average_high integer)")
