@@ -59,5 +59,6 @@ with con:
 
 # Retrieve data using the "fetchall()" method.
 	rows = cur.fetchall()
+	print "The cities that are warmest in July are:\n"
 	for row in rows:
-		print row
+		print row[0] + ", " + row[1]
