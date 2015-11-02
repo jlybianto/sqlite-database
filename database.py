@@ -49,3 +49,6 @@ with con:
 # Insert rows of data by passing tuples through the "execute()" method.
 	cur.executemany("INSERT INTO cities VALUES(?,?)", cities)
 	cur.executemany("INSERT INTO weather VALUES(?,?,?,?,?)", weather)
+
+# Join the tables and select cities with specific month.
+	cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'July'")
