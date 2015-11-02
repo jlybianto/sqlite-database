@@ -43,6 +43,8 @@ with con:
 	cur = con.cursor()
 
 # Create the tables.
+	cur.execute("CREATE TABLE cities (name text, state text)")
+	cur.execute("CREATE TABLE weather (city text, year integer, warm_month text, cold_month text, average_high integer)")
 
 # Insert rows of data by passing tuples through the "execute()" method.
 	cur.executemany("INSERT INTO cities VALUES(?,?)", cities)
