@@ -36,6 +36,10 @@ weather = (
 	('Atlanta', 2013, 'July', 'January', 70)
 )
 
+# User input for a more dynamic retrieval of data.
+month = raw_input("Select a month: ")
+month = month[0].upper() + month[1:].lower()
+
 # Connect to the database. The "connect()" method returns a connection object.
 con = lite.connect('getting_started.db')
 
@@ -55,10 +59,15 @@ with con:
 	cur.executemany("INSERT INTO weather VALUES(?,?,?,?,?)", weather)
 
 # Join the tables and select cities with specific month.
-	cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'July'")
+	if month == 'July':
+		cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'July'")
+	elif month == 'August':
+		cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'August'")
+	elif month == 'September':
+		cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'September'")
 
 # Retrieve data using the "fetchall()" method.
 	rows = cur.fetchall()
-	print "The cities that are warmest in July are:\n"
+	print "The cities that are warmest in " + month + " are:\n"
 	for row in rows:
 		print row[0] + ", " + row[1]
