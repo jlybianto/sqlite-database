@@ -60,14 +60,20 @@ with con:
 
 # Join the tables and select cities with specific month.
 	if month == 'July':
-		cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'July'")
+		cur.execute("SELECT name, state, warm_month FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'July'")
 	elif month == 'August':
-		cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'August'")
+		cur.execute("SELECT name, state, warm_month FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'August'")
 	elif month == 'September':
-		cur.execute("SELECT name, state FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'September'")
+		cur.execute("SELECT name, state, warm_month FROM cities INNER JOIN weather ON name = city WHERE warm_month = 'September'")
 
 # Retrieve data using the "fetchall()" method.
 	rows = cur.fetchall()
+
+# Load data into a pandas DataFrame.
+	cols = [desc[0] for desc in cur.description]
+	df = pd.DataFrame(rows, columns=cols)
+
+# Print output of script.
 	print "The cities that are warmest in " + month + " are:\n"
 	for row in rows:
 		print row[0] + ", " + row[1]
