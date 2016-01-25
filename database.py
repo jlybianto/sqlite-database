@@ -1,7 +1,15 @@
+# ----------------
+# IMPORT PACKAGES
+# ----------------
+
 # The sqlite3 model is used to work with the SQLite database.
 # The pandas package is used to fetch and store data in a DataFrame.
 import sqlite3 as lite
 import pandas as pd
+
+# ----------------
+# OBTAIN DATA
+# ----------------
 
 # Data to be inserted through the use of tuples.
 cities = (
@@ -40,6 +48,10 @@ weather = (
 month = raw_input("Select a month: ")
 month = month[0].upper() + month[1:].lower()
 
+# ----------------
+# STORE DATA
+# ----------------
+
 # Connect to the database. The "connect()" method returns a connection object.
 con = lite.connect('getting_started.db')
 
@@ -68,6 +80,10 @@ with con:
 
 # Retrieve data using the "fetchall()" method.
 	rows = cur.fetchall()
+
+# ----------------
+# ANALYZE DATA
+# ----------------
 
 # Load data into a pandas DataFrame.
 	cols = [desc[0] for desc in cur.description]
